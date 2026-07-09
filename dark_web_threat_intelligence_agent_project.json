@@ -1,0 +1,237 @@
+{
+  "project": {
+    "name": "Dark Web Threat Intelligence Agent",
+    "version": "1.0.0",
+    "purpose": "Build a read-only, agentic cybersecurity research platform that collects, extracts, classifies, and summarizes publicly accessible Tor content for defensive threat intelligence. The system must never perform unauthorized access, exploitation, credential use, purchases, or interaction with third-party services.",
+    "goals": [
+      "Collect public threat intelligence",
+      "Extract structured entities",
+      "Generate reports",
+      "Build a searchable knowledge base",
+      "Operate safely with least privilege"
+    ],
+    "non_goals": [
+      "No exploitation",
+      "No credential stuffing",
+      "No authentication bypass",
+      "No malware execution",
+      "No automated interaction with marketplaces or forums",
+      "No collection of non-public data"
+    ]
+  },
+  "architecture": {
+    "orchestrator": {
+      "role": "Coordinates all agents",
+      "framework_candidates": [
+        "LangGraph",
+        "CrewAI",
+        "AutoGen"
+      ]
+    },
+    "agents": [
+      {
+        "name": "DiscoveryAgent",
+        "responsibilities": [
+          "Maintain approved source list",
+          "Verify availability",
+          "Schedule revisits"
+        ],
+        "restrictions": [
+          "Approved sources only",
+          "No scanning",
+          "No autonomous source expansion"
+        ]
+      },
+      {
+        "name": "CrawlerAgent",
+        "responsibilities": [
+          "Fetch public pages",
+          "Store HTML and metadata"
+        ],
+        "restrictions": [
+          "Read-only GET requests",
+          "No form submission",
+          "No login",
+          "Rate limited"
+        ]
+      },
+      {
+        "name": "ParserAgent",
+        "responsibilities": [
+          "Extract text",
+          "Parse HTML",
+          "OCR images",
+          "Extract PDFs"
+        ],
+        "output": {
+          "title": "",
+          "language": "",
+          "text": "",
+          "links": [],
+          "metadata": {}
+        }
+      },
+      {
+        "name": "EntityExtractionAgent",
+        "responsibilities": [
+          "NER",
+          "LLM summarization",
+          "Structured JSON generation"
+        ],
+        "entities": [
+          "Organizations",
+          "Malware families",
+          "Ransomware groups",
+          "CVE IDs",
+          "Cryptocurrency addresses",
+          "Emails",
+          "Usernames",
+          "Dates",
+          "Software"
+        ]
+      },
+      {
+        "name": "ClassificationAgent",
+        "labels": [
+          "Malware",
+          "Leak",
+          "Forum",
+          "Research",
+          "News",
+          "Marketplace"
+        ]
+      },
+      {
+        "name": "KnowledgeGraphAgent",
+        "responsibilities": [
+          "Build relationships",
+          "Create graph database",
+          "Generate embeddings"
+        ]
+      },
+      {
+        "name": "ReportingAgent",
+        "responsibilities": [
+          "Daily reports",
+          "Trend analysis",
+          "Alert generation"
+        ]
+      }
+    ]
+  },
+  "data_pipeline": [
+    "Discover source",
+    "Fetch content",
+    "Parse content",
+    "Extract entities",
+    "Classify",
+    "Store raw data",
+    "Store structured data",
+    "Generate embeddings",
+    "Index search",
+    "Generate reports"
+  ],
+  "technology_stack": {
+    "language": "Python",
+    "browser": "Playwright",
+    "tor": "Tor SOCKS5 Proxy",
+    "parser": [
+      "BeautifulSoup",
+      "lxml"
+    ],
+    "ocr": "Tesseract",
+    "llm": [
+      "Ollama",
+      "llama.cpp"
+    ],
+    "database": "PostgreSQL",
+    "vector_db": "Qdrant",
+    "graph_db": "Neo4j",
+    "search": "OpenSearch or Elasticsearch",
+    "queue": "RabbitMQ",
+    "monitoring": [
+      "Prometheus",
+      "Grafana"
+    ],
+    "container": "Docker"
+  },
+  "storage": {
+    "raw_html": "object storage",
+    "parsed_json": "PostgreSQL",
+    "embeddings": "Qdrant",
+    "graph": "Neo4j",
+    "logs": "Immutable audit logs"
+  },
+  "safety": {
+    "principles": [
+      "Read-only",
+      "Human approval for configuration changes",
+      "Least privilege",
+      "Network isolation",
+      "Comprehensive audit logging"
+    ],
+    "prohibited_actions": [
+      "Exploitation",
+      "Credential use",
+      "Authentication bypass",
+      "Malware execution",
+      "Illegal content acquisition",
+      "Automated transactions"
+    ]
+  },
+  "deliverables": [
+    "Agent framework",
+    "Crawler",
+    "Parser",
+    "Entity extractor",
+    "Knowledge graph",
+    "Search API",
+    "Dashboard",
+    "Report generator",
+    "Docker deployment",
+    "Documentation",
+    "Tests"
+  ],
+  "milestones": [
+    {
+      "phase": 1,
+      "name": "Core architecture"
+    },
+    {
+      "phase": 2,
+      "name": "Crawler and parser"
+    },
+    {
+      "phase": 3,
+      "name": "LLM extraction"
+    },
+    {
+      "phase": 4,
+      "name": "Knowledge graph"
+    },
+    {
+      "phase": 5,
+      "name": "Dashboard and reports"
+    },
+    {
+      "phase": 6,
+      "name": "Testing and hardening"
+    }
+  ],
+  "success_metrics": {
+    "parser_accuracy": ">95%",
+    "entity_precision": ">90%",
+    "uptime": ">99%",
+    "duplicate_detection": ">95%",
+    "report_latency": "<5 minutes"
+  },
+  "instructions_for_antigravity": [
+    "Implement one module at a time.",
+    "Write unit tests before integration.",
+    "Use dependency injection.",
+    "Document every API.",
+    "Containerize every service.",
+    "Keep the crawler strictly read-only.",
+    "Do not implement capabilities outside the documented scope."
+  ]
+}

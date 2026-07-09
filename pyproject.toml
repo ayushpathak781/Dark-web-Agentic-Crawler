@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "darkweb-threat-intelligence"
+version = "1.0.0"
+description = "Read-only agentic pipeline for dark web threat intelligence"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Proprietary"}
+authors = [
+    {name = "Threat Intelligence Team"}
+]
+
+dependencies = [
+    "langgraph>=0.0.1",
+    "langchain-core>=0.1.0",
+    "pydantic>=2.0.0",
+    "httpx>=0.24.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0",
+    "langdetect>=1.0.9",
+    "spacy>=3.5.0",
+    "openai>=1.0.0",
+    "psycopg2-binary>=2.9.0",
+    "sqlalchemy>=2.0.0",
+    "qdrant-client>=2.4.0",
+    "neo4j>=5.14.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 100
