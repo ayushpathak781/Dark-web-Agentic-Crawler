@@ -1,6 +1,6 @@
-# Dark Web Threat Intelligence Agent
+ # Dark Web Threat Intelligence Agent
 
-**Status**: Phase 0 - Foundation & Planning  
+**Status**: Phase 2 - Discovery & Crawling  
 **Version**: 1.0.0  
 **Purpose**: Build a read-only, agentic cybersecurity research platform that collects, extracts, classifies, and summarizes publicly accessible Tor content for defensive threat intelligence.
 
@@ -33,6 +33,19 @@ A strictly **read-only** intelligence pipeline that:
 3. **Audit Everything**: Full trail of who did what, when, and why
 4. **Fail Safe**: Errors are logged and escalated, never silently ignored
 5. **Deterministic Processing**: Same input always produces same output (reproducibility)
+
+---
+
+## Current Phase
+
+### Phase 2: Discovery & Crawling
+
+Implemented in this workspace:
+- Read-only crawler service with allowlist enforcement
+- Tor-aware SOCKS5 proxy configuration plumbing
+- Per-source rate limiting and timeout enforcement
+- Raw HTML persistence with provenance metadata
+- Safety tests for GET-only behavior and response validation
 
 ---
 

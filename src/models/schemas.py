@@ -99,7 +99,7 @@ class RawPage(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     source_url: str
     crawl_timestamp: datetime
-    http_status: int = Field(ge=200, le=299)
+    http_status: int = Field(ge=100, le=599)
     headers: Dict[str, str]
     body_html: str = Field(max_length=52_428_800)  # 50MB
     body_bytes_hash: str
@@ -118,12 +118,6 @@ class RawPage(BaseModel):
                 "http_status": 200,
             }
         }
-    
-    @validator("http_status")
-    def validate_success_status(cls, v):
-        if not (200 <= v <= 299):
-            raise ValueError("Only success status codes (200-299) allowed")
-        return v
 
 
 # ============================================================================
@@ -154,7 +148,7 @@ class ParsedDocument(BaseModel):
     source_url: str
     parsed_timestamp: datetime
     title: str = Field(max_length=500)
-    language: str = Field(regex=r"^[a-z]{2}$")  # ISO 639-1
+    language: str = Field(pattern=r"^[a-z]{2}$")  # ISO 639-1
     text: str = Field(max_length=1_048_576)  # 1MB
     links: List[LinkReference] = Field(max_items=500)
     metadata: DocumentMetadata
